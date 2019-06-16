@@ -1,0 +1,17 @@
+<form action="#" th:action="@{/save_post_tag}"  th:object="${formData}" method="post">
+
+    <select th:field="*{post}">
+        <option value=""> -- </option>
+        <option th:each="post : ${posts}"
+                th:value="${post.id}"
+                th:utext="${post.name}"/>
+    </select>
+
+    <select th:field="*{tag}">
+        <option value=""> -- </option>
+        <option th:each="tag : ${tags}"
+                th:value="${tag.id}"
+                th:utext="${tag.tag}"/>
+    </select>
+    <input type="submit" value="Submit">
+</form>
