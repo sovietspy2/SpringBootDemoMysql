@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.FormData;
+import com.example.demo.models.form.FormData;
 import com.example.demo.models.Post;
 import com.example.demo.models.Tag;
 import com.example.demo.repositores.PostRepository;
@@ -30,42 +30,29 @@ public class PostController {
     @Autowired
     private TagRepository tagRepository;
 
-    @GetMapping("/")
-    public String index() {
-        //postService.loadPosts();
-        return "index";
-    }
-
-    @GetMapping("/load")
-    public String getData() {
-        return "data";
-    }
-
     @GetMapping("/new")
-    public String loadNewForm(Post post) {
+    public String newPost(Model model) {
+        model.addAttribute("post", new Post());
         return "new";
     }
 
     @PostMapping("/save")
-    public String save(Post post, BindingResult result, Model model) {
+    public String save(Post post) {
         postRepository.save(post);
-
-
         return "index";
     }
 
     @PostMapping("/save/{id}")
-    public String saveUpdate(@PathVariable int id, Post post, BindingResult result, Model model) throws Exception {
+    public String saveUpdate(@PathVariable int id, Post post) throws Exception {
         post.setId(id);
         postRepository.save(post);
-
-        return "index";
+        return "redirect:/";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public String loadNewForm(Model model) {
         model.addAttribute("posts", postRepository.findAll());
-        return "list";
+        return "index";
     }
 
     @GetMapping("/edit/{id}")
@@ -86,7 +73,7 @@ public class PostController {
 
         model.addAttribute("post", editPost.get());
 
-        return "index";
+        return "redirect:/";
     }
 
 
@@ -111,7 +98,7 @@ public class PostController {
         editedPost.getTags().add(newTag);
 
         postRepository.save(editedPost);
-        return "index";
+        return "redirect:/";
     }
 
 }

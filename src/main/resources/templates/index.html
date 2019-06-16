@@ -1,6 +1,36 @@
 <h1> welcome </h1>
 
 <a href="/new">New</a>
-<a href="/list">List</a>
 <a href="/add_tag">AddTagToPost</a>
 <a href="/create_tag">Addtag</a>
+
+<div th:switch="${posts}" xmlns:th="http://www.w3.org/1999/html">
+    <h2 th:case="null">No posts yet!</h2>
+    <div th:case="*">
+        <h2>Posts</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>text</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>tags</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.name}"></td>
+                <td th:text="${post.text}"></td>
+                <td><a th:href="@{/edit/{id}(id=${post.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${post.id})}">Delete</a></td>
+                <td>
+                    <th:block th:each="tag : ${post.tags}">
+                        <span th:text="${tag.tag}"></span>
+                    </th:block>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

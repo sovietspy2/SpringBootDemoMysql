@@ -1,5 +1,5 @@
-<form action="#" th:action="@{/save_tag}" th:object="${tag}" method="post">
+<form action="#" th:action="@{/save_tag}" th:object="${form}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
     <label for="tag">Tag name</label>
-    <input type="text" th:field="*{tagName}" id="tag" placeholder="tag name">
+    <input type="text" th:field="*{tag}" id="tag" placeholder="tag name">
     <input type="submit" value="Save">
 </form>

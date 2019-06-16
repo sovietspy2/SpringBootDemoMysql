@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import com.example.demo.models.form.TagDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

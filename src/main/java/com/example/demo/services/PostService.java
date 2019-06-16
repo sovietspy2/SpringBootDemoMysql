@@ -11,8 +11,7 @@ public class PostService {
     private PostRepository postRepository;
 
     public void loadPosts() {
-        postRepository.findById(1);
-        System.out.println("kesz");
+         //dummy
     }
 
 }
